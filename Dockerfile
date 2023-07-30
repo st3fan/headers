@@ -3,10 +3,10 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/
 
 FROM golang:1.20 AS build
-WORKDIR /usr/local/src/hello-web
+WORKDIR /usr/local/src/headers
 COPY . .
 RUN CGO_ENABLED=0 go build -v
 
 FROM scratch
-COPY --from=build /usr/local/src/hello-web/hello-web /usr/local/bin/hello-web
-ENTRYPOINT ["/usr/local/bin/hello-web"]
+COPY --from=build /usr/local/src/headers/headers /usr/local/bin/headers
+ENTRYPOINT ["/usr/local/bin/headers"]
